@@ -12,8 +12,7 @@ export const Statistics = ({ clicks, total, positiv }) => {
     <>
       <StatisticsDiv>
         <StatisticsTitleH>
-          Статистика {console.log('clicks= ', { clicks })}
-          {console.log('total= ', total())}
+          Статистика 
         </StatisticsTitleH>
         {total() ? (
           <BlockStatisticsDiv>

@@ -1,15 +1,10 @@
 import { Component } from 'react';
 
-// import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-
 import { MessageFeedback } from 'components/MessageFeedback/MessageFeedback';
 
 import { Statistics } from './Statistics/Statistics';
 
 import { Feedback } from './Feedback/Feedback';
-
-
-
 
 
 export class App extends Component {
@@ -18,14 +13,10 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
-
-  
-
-  
+   
 
   handleClickTwo = type => {
-    this.setState(prevState => {
-      console.log('11-', type, '22-', prevState);
+    this.setState(prevState => {      
       return {
         [type]: prevState[type] + 1,
       };
@@ -46,13 +37,11 @@ export class App extends Component {
     );
 
   render() {
-    // const { good, neutral, bad } = this.state;
+    
     const invitationMessage = 'Надайте , будь ласка , відгук ...';
 
     return (
-      <>
-        
-
+      <>      
         <Feedback
           invitationMessage={invitationMessage}
           options={['good', 'neutral', 'bad']}          
