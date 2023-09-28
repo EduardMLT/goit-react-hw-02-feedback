@@ -1,43 +1,34 @@
 import { Component } from 'react';
 
-import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+// import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 
 import { MessageFeedback } from 'components/MessageFeedback/MessageFeedback';
 
 import { Statistics } from './Statistics/Statistics';
 
-import {
-  FeedbackOptionsDiv,
-  FeedbackOptionsH,
-  BlockButton,
-  BlockButtonButtons,
-} from './FeedbackOptions/FeedbackOptions.styled';
+import { Feedback } from './Feedback/Feedback';
+
 
 
 
 
 export class App extends Component {
   state = {
-    numberOfClicksGood: 0,
-    numberOfClicksNeutral: 0,
-    numberOfClicksBad: 0,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
-   
-  handleClick = (event, prevState) => {
-    this.setState(prevState => {
-      const id = event.target.id;
-      console.log(id, prevState);
+  
 
-      if (id === 'goodId') {
-        return {
-          numberOfClicksGood: prevState.numberOfClicksGood + 1,
-        };
-      }
-      if (id === 'neutralId')
-        return { numberOfClicksNeutral: prevState.numberOfClicksNeutral + 1 };
-      if (id === 'badId')
-        return { numberOfClicksBad: prevState.numberOfClicksBad + 1 };
+  
+
+  handleClickTwo = type => {
+    this.setState(prevState => {
+      console.log('11-', type, '22-', prevState);
+      return {
+        [type]: prevState[type] + 1,
+      };
     });
   };
 
@@ -48,39 +39,26 @@ export class App extends Component {
     );
 
   countPositiveFeedbackPercentage = () =>
-    this.state.numberOfClicksGood > 0 ? (
-      `${Math.floor(
-        (this.state.numberOfClicksGood / this.countTotalFeedback()) * 100
-      )}%`
+    this.state.good > 0 ? (
+      `${Math.floor((this.state.good / this.countTotalFeedback()) * 100)}%`
     ) : (
       <MessageFeedback message="No  positive feedback!" />
     );
 
   render() {
+    // const { good, neutral, bad } = this.state;
+    const invitationMessage = 'Надайте , будь ласка , відгук ...';
+
     return (
       <>
-        <FeedbackOptionsDiv>
-          <FeedbackOptionsH>Надайте , будь ласка , відгук ...</FeedbackOptionsH>
-          <BlockButton>
-            <BlockButtonButtons id="goodId" onClick={this.handleClick}>
-              good {this.state.numberOfClicksGood}
-              {console.log('Clicks Good=', this.state.numberOfClicksGood)}
-            </BlockButtonButtons>
-            <BlockButtonButtons id="neutralId" onClick={this.handleClick}>
-              neutral {this.state.numberOfClicksNeutral}
-              {console.log('Clicks Neutral=', this.state.numberOfClicksNeutral)}
-            </BlockButtonButtons>
-            <BlockButtonButtons id="badId" onClick={this.handleClick}>
-              bad {this.state.numberOfClicksBad}
-              {console.log('Clicks Bad=', this.state.numberOfClicksBad)}
-            </BlockButtonButtons>
-          </BlockButton>
-        </FeedbackOptionsDiv>
+        
 
-        <FeedbackOptions
-          total={this.countTotalFeedback}
-          message={this.noFeedback}
+        <Feedback
+          invitationMessage={invitationMessage}
+          options={['good', 'neutral', 'bad']}          
+          onLeaveFeedback={this.handleClickTwo}
         />
+
         <Statistics
           clicks={this.state}
           total={this.countTotalFeedback}
@@ -89,4 +67,4 @@ export class App extends Component {
       </>
     );
   }
-};
+}

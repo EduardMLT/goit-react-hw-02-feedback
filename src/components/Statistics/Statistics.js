@@ -17,11 +17,11 @@ export const Statistics = ({ clicks, total, positiv }) => {
         </StatisticsTitleH>
         {total() ? (
           <BlockStatisticsDiv>
-            <StatisticsSpan>Good {clicks.numberOfClicksGood}</StatisticsSpan>
+            <StatisticsSpan>Good {clicks.good}</StatisticsSpan>
             <StatisticsSpan>
-              Neutral {clicks.numberOfClicksNeutral}
+              Neutral {clicks.neutral}
             </StatisticsSpan>
-            <StatisticsSpan>Bad {clicks.numberOfClicksBad}</StatisticsSpan>
+            <StatisticsSpan>Bad {clicks.bad}</StatisticsSpan>
             <StatisticsSpan>Total {total()}</StatisticsSpan>
 
             {positiv() ? (

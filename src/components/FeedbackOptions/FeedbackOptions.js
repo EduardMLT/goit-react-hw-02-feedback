@@ -6,7 +6,7 @@ export const FeedbackOptions = ({ total, message }) => {
   //const clicks = this.state;
 
   <>
-    console.log('total FeedbackOptions', total(), message);
+    console.log('123 - total FeedbackOptions', total(), message);
     <p>{message}</p>;
   </>;
   
